@@ -1,20 +1,20 @@
 {
   "files": {
     "main.css": "/ReactBlog/static/css/main.6b417f1c.chunk.css",
-    "main.js": "/ReactBlog/static/js/main.883185eb.chunk.js",
-    "main.js.map": "/ReactBlog/static/js/main.883185eb.chunk.js.map",
+    "main.js": "/ReactBlog/static/js/main.f3dab458.chunk.js",
+    "main.js.map": "/ReactBlog/static/js/main.f3dab458.chunk.js.map",
     "runtime-main.js": "/ReactBlog/static/js/runtime-main.a3efbc90.js",
     "runtime-main.js.map": "/ReactBlog/static/js/runtime-main.a3efbc90.js.map",
-    "static/js/2.3843ca4b.chunk.js": "/ReactBlog/static/js/2.3843ca4b.chunk.js",
-    "static/js/2.3843ca4b.chunk.js.map": "/ReactBlog/static/js/2.3843ca4b.chunk.js.map",
+    "static/js/2.50d32a59.chunk.js": "/ReactBlog/static/js/2.50d32a59.chunk.js",
+    "static/js/2.50d32a59.chunk.js.map": "/ReactBlog/static/js/2.50d32a59.chunk.js.map",
     "index.html": "/ReactBlog/index.html",
     "static/css/main.6b417f1c.chunk.css.map": "/ReactBlog/static/css/main.6b417f1c.chunk.css.map",
-    "static/js/2.3843ca4b.chunk.js.LICENSE.txt": "/ReactBlog/static/js/2.3843ca4b.chunk.js.LICENSE.txt"
+    "static/js/2.50d32a59.chunk.js.LICENSE.txt": "/ReactBlog/static/js/2.50d32a59.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
     "static/js/runtime-main.a3efbc90.js",
-    "static/js/2.3843ca4b.chunk.js",
+    "static/js/2.50d32a59.chunk.js",
     "static/css/main.6b417f1c.chunk.css",
-    "static/js/main.883185eb.chunk.js"
+    "static/js/main.f3dab458.chunk.js"
   ]
 }
