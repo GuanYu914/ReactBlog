@@ -1,4 +1,4 @@
-import { useState } from "react/cjs/react.development";
+import { useState } from "react";
 import styled from "styled-components";
 import { postNewArticle } from "../../WebAPI";
 import { useHistory } from "react-router";
