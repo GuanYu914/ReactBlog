@@ -1,7 +1,8 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import styled from "styled-components";
-import { postNewArticle } from "../../WebAPI";
 import { useHistory } from "react-router";
+import { newPost, setNewPostResp } from "../../redux/reducers/postReducer";
+import { useDispatch, useSelector } from "react-redux";
 
 const PostPageContainer = styled.div``;
 
@@ -25,15 +26,17 @@ export default function PostPage() {
   const [postTitle, setPostTitle] = useState("");
   const [postBody, setPostBody] = useState("");
   const history = useHistory();
+  const dispatch = useDispatch();
+  const newPostResp = useSelector((store) => store.posts.newPostResp);
 
   function handlePostSubmit(e) {
     e.preventDefault();
-    console.log(postTitle, postBody);
-    postNewArticle(postTitle, postBody).then((response) => {
-      if (response.id) {
-        history.push("/");
-      }
-    });
+    dispatch(
+      newPost({
+        postTitle,
+        postBody,
+      })
+    );
   }
 
   function handleChangePostTitle(e) {
@@ -43,6 +46,15 @@ export default function PostPage() {
   function handleChangePostBody(e) {
     setPostBody(e.target.value);
   }
+
+  useEffect(() => {
+    if (newPostResp && newPostResp.id) {
+      history.push("/posts/" + newPostResp.id);
+    }
+    return () => {
+      dispatch(setNewPostResp(null));
+    };
+  }, [newPostResp, history]);
 
   return (
     <PostPageContainer>

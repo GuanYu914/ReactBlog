@@ -1,11 +1,12 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { getPostByID } from "../../WebAPI";
+import { getPostByID, postNewArticle } from "../../WebAPI";
 
 export const postReducer = createSlice({
   name: "posts",
   initialState: {
     isLoadingPost: true,
     post: null,
+    newPostResp: null,
   },
   reducers: {
     setIsLoadingPost: (state, action) => {
@@ -13,6 +14,9 @@ export const postReducer = createSlice({
     },
     setPost: (state, action) => {
       state.post = action.payload;
+    },
+    setNewPostResp: (state, action) => {
+      state.newPostResp = action.payload;
     },
   },
 });
@@ -31,5 +35,12 @@ export const getPost = (id) => (dispatch) => {
     });
 };
 
-export const { setIsLoadingPost, setPost } = postReducer.actions;
+export const newPost = (data) => (dispatch) => {
+  postNewArticle(data.postTitle, data.postBody).then((res) => {
+    dispatch(setNewPostResp(res));
+  });
+};
+
+export const { setIsLoadingPost, setPost, setNewPostResp } =
+  postReducer.actions;
 export default postReducer.reducer;
