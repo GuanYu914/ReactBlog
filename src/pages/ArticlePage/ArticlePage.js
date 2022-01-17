@@ -1,8 +1,9 @@
-import React, { useEffect, useState } from "react";
-import { getPostByID } from "../../WebAPI";
+import React, { useEffect } from "react";
 import { useParams } from "react-router-dom";
 import PropTypes from "prop-types";
 import styled from "styled-components";
+import { getPost } from "../../redux/reducers/postReducer";
+import { useDispatch, useSelector } from "react-redux";
 
 const PostContainer = styled.div`
   margin-top: 40px;
@@ -47,20 +48,24 @@ Post.propTypes = {
 };
 
 export default function ArticlePage() {
-  let { slug } = useParams();
-  const [post, setPost] = useState([]);
+  let { postID } = useParams();
+  const dispatch = useDispatch();
+  const isLoading = useSelector((store) => store.posts.isLoadingPost);
+  const post = useSelector((store) => store.posts.post);
 
   useEffect(() => {
-    getPostByID(slug).then((post) => {
-      setPost(post);
-    });
-  }, []);
+    dispatch(getPost(postID));
+  }, [postID]);
 
   return (
     <div>
-      {post.map((post) => (
-        <Post key={1} post={post} />
-      ))}
+      {!isLoading && (
+        <>
+          {post.map((post) => (
+            <Post key={1} post={post} />
+          ))}
+        </>
+      )}
     </div>
   );
 }
