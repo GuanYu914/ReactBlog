@@ -1,16 +1,14 @@
-import "./App.css";
-import React, { useEffect } from "react";
-import { AuthContext } from "../../contexts";
+import React, { useEffect, useState } from "react";
+import { AuthContext } from "./contexts";
 import styled from "styled-components";
-import Header from "../Header";
-import HomePage from "../../pages/HomePage";
-import LoginPage from "../../pages/LoginPage/LoginPage";
-import ArticlePage from "../../pages/ArticlePage/ArticlePage";
+import Header from "./components/Header";
+import HomePage from "./pages/HomePage";
+import LoginPage from "./pages/LoginPage";
+import ArticlePage from "./pages/ArticlePage";
 import { HashRouter as Router, Switch, Route } from "react-router-dom";
-import { useState } from "react";
-import { getMe } from "../../WebAPI";
-import { getAuthToken } from "../../utils";
-import PostPage from "../../pages/PostPage";
+import { getMe } from "./WebAPI";
+import { getAuthToken } from "./utils";
+import PostPage from "./pages/PostPage";
 
 const Root = styled.div`
   padding-top: 64px;
