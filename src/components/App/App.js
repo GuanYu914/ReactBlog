@@ -41,7 +41,7 @@ function App() {
             <Route path="/login">
               <LoginPage />
             </Route>
-            <Route path="/posts/:slug">
+            <Route path="/posts/:postID">
               <ArticlePage />
             </Route>
             <Route path="/new-post">
