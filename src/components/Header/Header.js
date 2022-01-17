@@ -1,7 +1,8 @@
-import React, { useContext } from "react";
+import React from "react";
 import styled from "styled-components";
 import { Link, useLocation } from "react-router-dom";
-import { AuthContext } from "../../contexts";
+import { setUser } from "../../redux/reducers/userReducer";
+import { useDispatch, useSelector } from "react-redux";
 import { setAuthToken } from "../../utils";
 
 const HeaderContainer = styled.div`
@@ -56,12 +57,12 @@ const Nav = styled(Link)`
 
 export default function Header() {
   const location = useLocation();
-  const { user, setUser } = useContext(AuthContext);
+  const dispatch = useDispatch();
+  const user = useSelector((store) => store.user.name);
 
   function handleLogout() {
     setAuthToken(null);
-    setUser(null);
-    // history.push("/");
+    dispatch(setUser(null));
   }
 
   return (

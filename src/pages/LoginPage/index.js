@@ -1,39 +1,24 @@
-import React, { useContext, useState } from "react";
+import React, { useState, useEffect } from "react";
 import styled from "styled-components";
-import { login, getMe } from "../../WebAPI";
-import { setAuthToken } from "../../utils";
 import { useHistory } from "react-router";
-import { AuthContext } from "../../contexts";
+import { setErrMsg, userLogin } from "../../redux/reducers/userReducer";
+import { useDispatch, useSelector } from "react-redux";
 
 const ErrorMessage = styled.div`
   color: red;
 `;
 
 export default function LoginPage() {
-  const { setUser } = useContext(AuthContext);
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  const [errorMessage, setErrorMessage] = useState("");
   const history = useHistory();
+  const dispatch = useDispatch();
+  const user = useSelector((store) => store.user.name);
+  const errorMessage = useSelector((store) => store.user.errMsg);
 
   function handleSubmit(e) {
     e.preventDefault();
-    setErrorMessage("");
-    login(username, password).then((data) => {
-      if (!data.ok) {
-        return setErrorMessage(data.message);
-      }
-      setAuthToken(data.token);
-      getMe().then((response) => {
-        if (response.ok !== 1) {
-          setAuthToken(null);
-          return setErrorMessage(response.toString());
-        }
-        setUser(response.data);
-        history.push("/");
-      });
-      // redirect to home page
-    });
+    dispatch(userLogin({ username, password }));
   }
 
   function handleUsernameChange(e) {
@@ -43,6 +28,18 @@ export default function LoginPage() {
   function handlePasswordChange(e) {
     setPassword(e.target.value);
   }
+
+  useEffect(() => {
+    if (user) {
+      history.push("/");
+    }
+  }, [user]);
+
+  useEffect(() => {
+    return () => {
+      dispatch(setErrMsg(null));
+    };
+  }, [setErrMsg]);
 
   return (
     <form onSubmit={handleSubmit}>
