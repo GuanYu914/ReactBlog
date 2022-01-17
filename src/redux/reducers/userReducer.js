@@ -20,10 +20,9 @@ export const userReducer = createSlice({
 
 // redux-thunk
 export const getUser = () => (dispatch) => {
-  if (getAuthToken() !== null) {
+  if (getAuthToken() !== "null") {
     getMe().then((response) => {
       if (!response.ok) {
-        dispatch(setErrMsg(response.toString()));
         return;
       }
       dispatch(setErrMsg(null));
